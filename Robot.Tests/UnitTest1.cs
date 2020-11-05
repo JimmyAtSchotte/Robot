@@ -28,6 +28,9 @@ namespace Robot.Tests
                 case 'W':
                     _position.X -= steps;
                     break;
+                case 'E':
+                    _position.X += steps;
+                    break;
                 default:
                     break;
             }
@@ -94,6 +97,17 @@ namespace Robot.Tests
             robot.Move($"W {steps}");
 
             Assert.AreEqual(steps * -1, robot.GetPosition().X);
+        }
+
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(100)]
+        public void MoveRobotEastNStep(int steps)
+        {
+            var robot = new Robot();
+            robot.Move($"E {steps}");
+
+            Assert.AreEqual(steps, robot.GetPosition().X);
         }
     }
 }
