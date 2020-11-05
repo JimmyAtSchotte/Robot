@@ -23,6 +23,11 @@ namespace Robot.Tests
                 'W' => _position.MoveX(steps * -1),
                 'E' => _position.MoveX(steps)
             };
-        }       
+        }
+
+        internal double CleanedSpots()
+        {
+            return 1;
+        }
     }
 }
