@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Robot.Tests
 {
-    public class Tests
+    public class RobotTests
     {                 
         [TestCase(1)]
         [TestCase(3)]
@@ -68,15 +68,22 @@ namespace Robot.Tests
 
             Assert.AreEqual(1, robot.CalculateCleanedSpots());
         }
-
-        [Test]
-        public void ShouldHaveCleanedSpotsInNorthDirection()
+ 
+        [TestCase("N 5")]
+        [TestCase("S 5")]
+        [TestCase("E 5")]
+        [TestCase("W 5")]
+        public void ShouldHaveCleanedSpotsInOneDirection(string movement)
         {
             var robot = new Robot();
-            robot.Move("N 5");
+            robot.Move(movement);
 
-            Assert.AreEqual(5, robot.CalculateCleanedSpots());
+            Assert.AreEqual(6, robot.CalculateCleanedSpots());
         }
 
+
+
+
+    
     }
 }

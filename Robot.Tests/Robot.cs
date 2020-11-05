@@ -6,16 +6,13 @@ namespace Robot.Tests
 {
     public class Robot
     {
-        private Position _position;
-
         private readonly List<Position> _positions;
 
         public Robot()
         {
-            _position = new Position(0, 0);
             _positions = new List<Position>()
             {
-                _position
+                new Position(0, 0)
             };
         }
 
@@ -24,22 +21,32 @@ namespace Robot.Tests
             var direction = movement[0];
             var steps = Convert.ToInt32(movement.Substring(2));
 
-            _position = direction switch
+            var position = direction switch
             {
-                'N' => _position.MoveY(steps),
-                'S' => _position.MoveY(steps * -1),
-                'W' => _position.MoveX(steps * -1),
-                'E' => _position.MoveX(steps)
+                'N' => _positions.Last().MoveY(steps),
+                'S' => _positions.Last().MoveY(steps * -1),
+                'W' => _positions.Last().MoveX(steps * -1),
+                'E' => _positions.Last().MoveX(steps)
             };
 
-            _positions.Add(_position);
+            _positions.Add(position);
 
-            return _position;
+            return position;
         }
 
-        internal double CalculateCleanedSpots()
+        internal int CalculateCleanedSpots()
         {
-            return _positions.Sum(p => p.Y);
+            var cleanedSpots = new CleanedSpots();
+
+            for (int i = 0; i < _positions.Count; i++)
+            {
+                var currentPosition = _positions[i];
+                var previusPosition = i > 0 ? _positions[i - 1] : null;
+
+                cleanedSpots.AddMovement(currentPosition, previusPosition);     
+            }
+
+            return cleanedSpots.Count();
         }
     }
 }
