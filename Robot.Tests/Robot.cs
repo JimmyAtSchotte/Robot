@@ -8,7 +8,7 @@ namespace Robot.Tests
 
         public Robot()
         {
-            _position = new Position();
+            _position = new Position(0, 0);
         }
 
         internal Position Move(string movement)
@@ -16,31 +16,13 @@ namespace Robot.Tests
             var direction = movement[0];
             var steps = Convert.ToInt32(movement.Substring(2));
 
-            switch (direction)
+            return direction switch
             {
-                case 'N': 
-                    _position.Y += steps; 
-                    break;
-                case 'S':
-                    _position.Y -= steps;
-                    break;
-                case 'W':
-                    _position.X -= steps;
-                    break;
-                case 'E':
-                    _position.X += steps;
-                    break;
-                default:
-                    break;
-            }
-
-            return _position;
-
-        }
-
-        internal Position GetPosition()
-        {
-            return _position;
-        }
+                'N' => _position.MoveY(steps),
+                'S' => _position.MoveY(steps * -1),
+                'W' => _position.MoveX(steps * -1),
+                'E' => _position.MoveX(steps)
+            };
+        }       
     }
 }

@@ -47,5 +47,7 @@ namespace Robot.Tests
 
             Assert.AreEqual(steps, position.X);
         }
+
+        
     }
 }
