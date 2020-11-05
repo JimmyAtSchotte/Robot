@@ -3,21 +3,7 @@ using NUnit.Framework;
 namespace Robot.Tests
 {
     public class Tests
-    {
-        [Test]
-        public void CreateRobot()
-        {
-            var robot = new Robot();
-        }
-
-        [Test]
-        public void MoveRobot()
-        {
-            var robot = new Robot();
-            robot.Move("N 1");
-        }
-          
-
+    {                 
         [TestCase(1)]
         [TestCase(3)]
         [TestCase(100)]
