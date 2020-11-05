@@ -2,17 +2,18 @@ using NUnit.Framework;
 
 namespace Robot.Tests
 {
+    public class Robot
+    {
+
+    }
+
+
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        public void Test1()
+        public void CreateRobot()
         {
-            Assert.Pass();
+            var robot = new Robot();
         }
     }
 }
