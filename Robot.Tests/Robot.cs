@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Robot.Tests
 {
     public class Robot
     {
         private readonly Position _position;
+        private readonly List<Position> _movementHistory;
 
         public Robot()
         {
@@ -23,11 +25,6 @@ namespace Robot.Tests
                 'W' => _position.MoveX(steps * -1),
                 'E' => _position.MoveX(steps)
             };
-        }
-
-        internal double CleanedSpots()
-        {
-            return 1;
-        }
+        }    
     }
 }

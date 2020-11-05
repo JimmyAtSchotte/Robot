@@ -47,14 +47,6 @@ namespace Robot.Tests
 
             Assert.AreEqual(steps, position.X);
         }
-
-        [Test]
-        public void ShouldHaveCleanedASpot()
-        {
-            var robot = new Robot();
-
-            Assert.AreEqual(1, robot.CleanedSpots());
-        }      
-        
+               
     }
 }
