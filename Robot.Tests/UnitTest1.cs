@@ -1,55 +1,7 @@
 using NUnit.Framework;
-using System;
 
 namespace Robot.Tests
 {
-    public class Robot
-    {
-        private readonly Position _position;
-
-        public Robot()
-        {
-            _position = new Position();
-        }
-
-        internal void Move(string movement)
-        {
-            var direction = movement[0];
-            var steps = Convert.ToInt32(movement.Substring(2));
-
-            switch (direction)
-            {
-                case 'N': 
-                    _position.Y += steps; 
-                    break;
-                case 'S':
-                    _position.Y -= steps;
-                    break;
-                case 'W':
-                    _position.X -= steps;
-                    break;
-                case 'E':
-                    _position.X += steps;
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        internal Position GetPosition()
-        {
-            return _position;
-        }
-    }
-
-    public class Position
-    {
-        public int Y { get; set; }
-        public int X { get; set; }
-    }
-
-
     public class Tests
     {
         [Test]
@@ -72,9 +24,9 @@ namespace Robot.Tests
         public void MoveRobotNorthNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move($"N {steps}");
+            var position = robot.Move($"N {steps}");
 
-            Assert.AreEqual(steps, robot.GetPosition().Y);
+            Assert.AreEqual(steps, position.Y);
         }
 
         [TestCase(1)]
@@ -83,9 +35,9 @@ namespace Robot.Tests
         public void MoveRobotSouthNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move($"S {steps}");
+            var position = robot.Move($"S {steps}");
 
-            Assert.AreEqual(steps * -1, robot.GetPosition().Y);
+            Assert.AreEqual(steps * -1, position.Y);
         }
 
         [TestCase(1)]
@@ -94,9 +46,9 @@ namespace Robot.Tests
         public void MoveRobotWestNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move($"W {steps}");
+            var position = robot.Move($"W {steps}");
 
-            Assert.AreEqual(steps * -1, robot.GetPosition().X);
+            Assert.AreEqual(steps * -1, position.X);
         }
 
         [TestCase(1)]
@@ -105,9 +57,9 @@ namespace Robot.Tests
         public void MoveRobotEastNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move($"E {steps}");
+            var position = robot.Move($"E {steps}");
 
-            Assert.AreEqual(steps, robot.GetPosition().X);
+            Assert.AreEqual(steps, position.X);
         }
     }
 }
