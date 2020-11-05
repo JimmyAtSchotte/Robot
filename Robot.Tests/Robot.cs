@@ -7,6 +7,7 @@ namespace Robot.Tests
     public class Robot
     {
         private readonly List<Position> _positions;
+        
 
         public Robot()
         {
@@ -36,17 +37,8 @@ namespace Robot.Tests
 
         internal int CalculateCleanedSpots()
         {
-            var cleanedSpots = new CleanedSpots();
-
-            for (int i = 0; i < _positions.Count; i++)
-            {
-                var currentPosition = _positions[i];
-                var previusPosition = i > 0 ? _positions[i - 1] : null;
-
-                cleanedSpots.AddMovement(currentPosition, previusPosition);     
-            }
-
-            return cleanedSpots.Count();
+            var cleanedSpots = new CleanedSpots();  
+            return cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
         }
     }
 }

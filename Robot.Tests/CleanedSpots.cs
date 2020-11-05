@@ -20,9 +20,20 @@ namespace Robot.Tests
             _cleanedSpots.Add(new CleanedSpot(x, y));
         }
 
-        public int Count() => _cleanedSpots.Count();
+        public int CalculateCleanedSpots(Position[] positions)
+        {
+            for (int i = 0; i < positions.Count(); i++)
+            {
+                var currentPosition = positions[i];
+                var previusPosition = i > 0 ? positions[i - 1] : null;
 
-        internal void AddMovement(Position currentPosition, Position previusPosition)
+                AddMovement(currentPosition, previusPosition);
+            }
+
+            return _cleanedSpots.Count();
+        }
+
+        private void AddMovement(Position currentPosition, Position previusPosition)
         {
             Add(currentPosition.X, currentPosition.Y);
 

@@ -11,23 +11,12 @@ namespace Robot.Tests
             var cleanedSpots = new CleanedSpots();
             var currentPosition = new Position(0, 0);
 
-            cleanedSpots.AddMovement(currentPosition, null);
 
-            Assert.AreEqual(1, cleanedSpots.Count());
+            var result = cleanedSpots.CalculateCleanedSpots(new[] { currentPosition });
+
+            Assert.AreEqual(1, result);
         }
-
-        [Test]
-        public void Compare()
-        {
-            var cleanedSpots = new CleanedSpots();
-            var previusPosition = new Position(0, 0);
-            var currentPosition = new Position(1, 0);
-
-            cleanedSpots.AddMovement(currentPosition, previusPosition);
-
-            Assert.AreEqual(2, cleanedSpots.Count());
-        }
-
+          
 
         [TestCase(1, 0)]
         [TestCase(-1, 0)]
@@ -39,9 +28,9 @@ namespace Robot.Tests
             var previusPosition = new Position(0, 0);
             var currentPosition = new Position(x, y);
 
-            cleanedSpots.AddMovement(currentPosition, previusPosition);
+            var result  =cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previusPosition });
 
-            Assert.AreEqual(2, cleanedSpots.Count());
+            Assert.AreEqual(2, result);
         }
 
         [Test]
@@ -51,9 +40,9 @@ namespace Robot.Tests
             var previusPosition = new Position(0, 0);
             var currentPosition = new Position(0, 0);
 
-            cleanedSpots.AddMovement(currentPosition, previusPosition);
+            var result =  cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previusPosition });
 
-            Assert.AreEqual(1, cleanedSpots.Count());
+            Assert.AreEqual(1, result);
         }
 
     }
