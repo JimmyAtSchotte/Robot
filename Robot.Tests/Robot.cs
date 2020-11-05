@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Robot.Tests
 {
@@ -7,9 +8,15 @@ namespace Robot.Tests
     {
         private Position _position;
 
+        private readonly List<Position> _positions;
+
         public Robot()
         {
             _position = new Position(0, 0);
+            _positions = new List<Position>()
+            {
+                _position
+            };
         }
 
         internal Position Move(string movement)
@@ -25,12 +32,14 @@ namespace Robot.Tests
                 'E' => _position.MoveX(steps)
             };
 
+            _positions.Add(_position);
+
             return _position;
         }
 
         internal double CalculateCleanedSpots()
         {
-            return 1;
+            return _positions.Sum(p => p.Y);
         }
     }
 }

@@ -69,5 +69,14 @@ namespace Robot.Tests
             Assert.AreEqual(1, robot.CalculateCleanedSpots());
         }
 
+        [Test]
+        public void ShouldHaveCleanedSpotsInNorthDirection()
+        {
+            var robot = new Robot();
+            robot.Move("N 5");
+
+            Assert.AreEqual(5, robot.CalculateCleanedSpots());
+        }
+
     }
 }
