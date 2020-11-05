@@ -12,9 +12,23 @@ namespace Robot.Tests
             _position = new Position();
         }
 
-        internal void Move(string v)
+        internal void Move(string movement)
         {
-            _position.Y += 1;
+            var direction = movement[0];
+
+
+            switch (direction)
+            {
+                case 'N': 
+                    _position.Y += 1; 
+                    break;
+                case 'S':
+                    _position.Y -= 1;
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         internal Position GetPosition()
@@ -52,6 +66,15 @@ namespace Robot.Tests
             robot.Move("N 1");
 
             Assert.AreEqual(1, robot.GetPosition().Y);
+        }
+
+        [Test]
+        public void MoveRobotSouth1Step()
+        {
+            var robot = new Robot();
+            robot.Move("S 1");
+
+            Assert.AreEqual(-1, robot.GetPosition().Y);
         }
     }
 }
