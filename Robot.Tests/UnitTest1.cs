@@ -15,16 +15,17 @@ namespace Robot.Tests
         internal void Move(string movement)
         {
             var direction = movement[0];
-
+            var steps = Convert.ToInt32(movement.Substring(2));
 
             switch (direction)
             {
                 case 'N': 
-                    _position.Y += 1; 
+                    _position.Y += steps; 
                     break;
                 case 'S':
-                    _position.Y -= 1;
+                    _position.Y -= steps;
                     break;
+
                 default:
                     break;
             }
@@ -58,23 +59,28 @@ namespace Robot.Tests
             var robot = new Robot();
             robot.Move("N 1");
         }
+          
 
-        [Test]
-        public void MoveRobotNorth1Step()
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(100)]
+        public void MoveRobotNorthNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move("N 1");
+            robot.Move($"N {steps}");
 
-            Assert.AreEqual(1, robot.GetPosition().Y);
+            Assert.AreEqual(steps, robot.GetPosition().Y);
         }
 
-        [Test]
-        public void MoveRobotSouth1Step()
+        [TestCase(1)]
+        [TestCase(3)]
+        [TestCase(100)]
+        public void MoveRobotSouthNStep(int steps)
         {
             var robot = new Robot();
-            robot.Move("S 1");
+            robot.Move($"S {steps}");
 
-            Assert.AreEqual(-1, robot.GetPosition().Y);
+            Assert.AreEqual(steps * -1, robot.GetPosition().Y);
         }
     }
 }
