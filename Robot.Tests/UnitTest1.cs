@@ -59,8 +59,15 @@ namespace Robot.Tests
 
             Assert.AreEqual(-3, position.Y);
             Assert.AreEqual(2, position.X);
-
         }
-               
+
+        [Test]
+        public void ShouldHaveCleanedASpotWithoutAnyMovement()
+        {
+            var robot = new Robot();
+
+            Assert.AreEqual(1, robot.CalculateCleanedSpots());
+        }
+
     }
 }

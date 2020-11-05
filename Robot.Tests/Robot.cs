@@ -26,6 +26,11 @@ namespace Robot.Tests
             };
 
             return _position;
-        }    
+        }
+
+        internal double CalculateCleanedSpots()
+        {
+            return 1;
+        }
     }
 }
