@@ -47,6 +47,20 @@ namespace Robot.Tests
 
             Assert.AreEqual(steps, position.X);
         }
+
+        [Test]
+        public void ShouldMoveRobotInMultipleDirections()
+        {
+            var robot = new Robot();
+            robot.Move("N 1");
+            robot.Move("E 3");
+            robot.Move("S 4");
+            var position = robot.Move("W 1");
+
+            Assert.AreEqual(-3, position.Y);
+            Assert.AreEqual(2, position.X);
+
+        }
                
     }
 }
