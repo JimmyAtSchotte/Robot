@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Robot.Tests
@@ -40,21 +41,32 @@ namespace Robot.Tests
             if (previusPosition is null)
                 return;
 
-            if (currentPosition.X > previusPosition.X)
-                for (int x = previusPosition.X; x < currentPosition.X - previusPosition.X; x++)
-                   Add(x, currentPosition.Y);
+            AddHorizontalMovement(currentPosition, previusPosition);
+            AddVerticalMovement(currentPosition, previusPosition);            
+        }
 
-            if (previusPosition.X > currentPosition.X)
-                for (int x = previusPosition.X; x > currentPosition.X - previusPosition.X; x--)
-                    Add(x, currentPosition.Y);
+        private void AddHorizontalMovement(Position currentPosition, Position previusPosition)
+        {
+            if (currentPosition.X == previusPosition.X)
+                return;
 
-            if (currentPosition.Y > previusPosition.Y)
-                for (int y = previusPosition.Y; y < currentPosition.Y - previusPosition.Y; y++)
-                    Add(currentPosition.X, y);
+            var start = Math.Min(currentPosition.X, previusPosition.X);
+            var stop = Math.Max(currentPosition.X, previusPosition.X);
 
-            if (previusPosition.Y > currentPosition.Y)
-                for (int y = previusPosition.Y; y > currentPosition.Y - previusPosition.Y; y--)
-                    Add(currentPosition.X, y);
+            for (int x = start; x < stop; x++)
+                Add(x, currentPosition.Y);
+        }
+
+        private void AddVerticalMovement(Position currentPosition, Position previusPosition)
+        {
+            if (currentPosition.Y == previusPosition.Y)
+                return;
+
+            var start = Math.Min(currentPosition.Y, previusPosition.Y);
+            var stop = Math.Max(currentPosition.Y, previusPosition.Y);
+
+            for (int y = start; y < stop; y++)
+                Add(currentPosition.X, y);
         }
     }
 }

@@ -18,10 +18,10 @@ namespace Robot.Tests
         }
           
 
-        [TestCase(1, 0)]
-        [TestCase(-1, 0)]
-        [TestCase(0, 1)]
-        [TestCase(0, -1)]
+        [TestCase(2, 0)]
+        [TestCase(-2, 0)]
+        [TestCase(0, 2)]
+        [TestCase(0, -2)]
         public void ComparePositionsToAddCleanedSpots(int x, int y)
         {
             var cleanedSpots = new CleanedSpots();
@@ -30,7 +30,7 @@ namespace Robot.Tests
 
             var result  =cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previusPosition });
 
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(3, result);
         }
 
         [Test]
