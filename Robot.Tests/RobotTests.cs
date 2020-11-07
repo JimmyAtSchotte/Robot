@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 namespace Robot.Tests
 {
+
     public class RobotTests
     {                 
         [TestCase(1)]
