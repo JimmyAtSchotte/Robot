@@ -7,6 +7,6 @@
 
     public interface IOutputService
     {
-        string Output(string output);
+        void Output(string output);
     }
 }
