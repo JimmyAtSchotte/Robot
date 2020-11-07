@@ -17,28 +17,25 @@ namespace Robot.Tests
             };
         }
 
-        internal Position Move(string movement)
+        internal int CalculateCleanedSpots()
         {
-            var direction = movement[0];
-            var steps = Convert.ToInt32(movement.Substring(2));
+            var cleanedSpots = new CleanedSpots();  
+            return cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
+        }
 
-            var position = direction switch
+        public Position Move(IMoveCommand moveCommand)
+        {      
+            var position = moveCommand.Direction switch
             {
-                'N' => _positions.Last().MoveY(steps),
-                'S' => _positions.Last().MoveY(steps * -1),
-                'W' => _positions.Last().MoveX(steps * -1),
-                'E' => _positions.Last().MoveX(steps)
+                Direction.North => _positions.Last().MoveY(moveCommand.Steps),
+                Direction.South => _positions.Last().MoveY(moveCommand.Steps * -1),
+                Direction.West => _positions.Last().MoveX(moveCommand.Steps * -1),
+                Direction.East => _positions.Last().MoveX(moveCommand.Steps)
             };
 
             _positions.Add(position);
 
             return position;
-        }
-
-        internal int CalculateCleanedSpots()
-        {
-            var cleanedSpots = new CleanedSpots();  
-            return cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
         }
     }
 }

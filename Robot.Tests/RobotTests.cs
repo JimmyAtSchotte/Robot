@@ -10,7 +10,7 @@ namespace Robot.Tests
         public void MoveRobotNorthNStep(int steps)
         {
             var robot = new Robot();
-            var position = robot.Move($"N {steps}");
+            var position = robot.Move(MoveCommand.Parse($"N {steps}"));
 
             Assert.AreEqual(steps, position.Y);
         }
@@ -21,7 +21,7 @@ namespace Robot.Tests
         public void MoveRobotSouthNStep(int steps)
         {
             var robot = new Robot();
-            var position = robot.Move($"S {steps}");
+            var position = robot.Move(MoveCommand.Parse($"S {steps}"));
 
             Assert.AreEqual(steps * -1, position.Y);
         }
@@ -32,7 +32,7 @@ namespace Robot.Tests
         public void MoveRobotWestNStep(int steps)
         {
             var robot = new Robot();
-            var position = robot.Move($"W {steps}");
+            var position = robot.Move(MoveCommand.Parse($"W {steps}"));
 
             Assert.AreEqual(steps * -1, position.X);
         }
@@ -43,7 +43,7 @@ namespace Robot.Tests
         public void MoveRobotEastNStep(int steps)
         {
             var robot = new Robot();
-            var position = robot.Move($"E {steps}");
+            var position = robot.Move(MoveCommand.Parse($"E {steps}"));
 
             Assert.AreEqual(steps, position.X);
         }
@@ -52,10 +52,10 @@ namespace Robot.Tests
         public void ShouldMoveRobotInMultipleDirections()
         {
             var robot = new Robot();
-            robot.Move("N 1");
-            robot.Move("E 3");
-            robot.Move("S 4");
-            var position = robot.Move("W 1");
+            robot.Move(MoveCommand.Parse("N 1"));
+            robot.Move(MoveCommand.Parse("E 3"));
+            robot.Move(MoveCommand.Parse("S 4"));
+            var position = robot.Move(MoveCommand.Parse("W 1"));
 
             Assert.AreEqual(-3, position.Y);
             Assert.AreEqual(2, position.X);
@@ -76,7 +76,7 @@ namespace Robot.Tests
         public void ShouldHaveCleanedSpotsInOneDirection(string movement)
         {
             var robot = new Robot();
-            robot.Move(movement);
+            robot.Move(MoveCommand.Parse(movement));
 
             Assert.AreEqual(6, robot.CalculateCleanedSpots());
         }    
