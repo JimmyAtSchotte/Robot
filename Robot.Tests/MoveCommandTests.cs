@@ -22,6 +22,14 @@ namespace Robot.Tests
 
             Assert.AreEqual(Direction.South, moveCommand.Direction);
         }
+
+        [Test]
+        public void ParseWestMovement()
+        {
+            var moveCommand = MoveCommand.Parse("W 1");
+
+            Assert.AreEqual(Direction.West, moveCommand.Direction);
+        }
     }
 
     public enum Direction
@@ -47,7 +55,8 @@ namespace Robot.Tests
             var direction = moveCommand[0] switch
             {
                 'N' => Direction.North,
-                'S' => Direction.South
+                'S' => Direction.South,
+                'W' => Direction.West
             };
 
             return new MoveCommand(direction);
