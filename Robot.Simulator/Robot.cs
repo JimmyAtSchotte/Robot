@@ -17,7 +17,7 @@ namespace Robot.Tests
             };
         }
 
-        internal int CalculateCleanedSpots()
+        public int CalculateCleanedSpots()
         {
             var cleanedSpots = new CleanedSpots();  
             return cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
