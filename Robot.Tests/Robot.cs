@@ -9,11 +9,11 @@ namespace Robot.Tests
         private readonly List<Position> _positions;
         
 
-        public Robot()
+        public Robot(int x = 0, int y = 0)
         {
             _positions = new List<Position>()
             {
-                new Position(0, 0)
+                new Position(x, y)
             };
         }
 
