@@ -1,4 +1,6 @@
-﻿namespace Robot.Tests
+﻿using System;
+
+namespace Robot.Tests
 {
     public class Position
     {
@@ -11,14 +13,25 @@
             Y = y;
         }
 
-        public Position MoveX(int steps)
+        private Position MoveX(int steps)
         {
             return new Position(this.X + steps, this.Y);
         }
 
-        public Position MoveY(int steps)
+        private Position MoveY(int steps)
         {
             return new Position(this.X, this.Y + steps);
+        }
+
+        public Position Move(IMoveCommand moveCommand)
+        {
+            return moveCommand.Direction switch
+            {
+                Direction.North => MoveY(moveCommand.Steps),
+                Direction.South => MoveY(moveCommand.Steps * -1),
+                Direction.West => MoveX(moveCommand.Steps * -1),
+                Direction.East => MoveX(moveCommand.Steps)
+            };
         }
     }
 }

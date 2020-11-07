@@ -24,17 +24,9 @@ namespace Robot.Tests
         }
 
         public Position Move(IMoveCommand moveCommand)
-        {      
-            var position = moveCommand.Direction switch
-            {
-                Direction.North => _positions.Last().MoveY(moveCommand.Steps),
-                Direction.South => _positions.Last().MoveY(moveCommand.Steps * -1),
-                Direction.West => _positions.Last().MoveX(moveCommand.Steps * -1),
-                Direction.East => _positions.Last().MoveX(moveCommand.Steps)
-            };
-
+        {
+            var position = _positions.Last().Move(moveCommand);
             _positions.Add(position);
-
             return position;
         }
     }
