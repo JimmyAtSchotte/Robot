@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Robot.Simulator.Core;
 using Robot.Simulator.IO.Console;
 using Robot.Simulator.Robot;
 
@@ -8,11 +10,17 @@ namespace Robot.Simulator
     {
         static void Main(string[] args)
         {
-            var inputService = new InputService();
-            var outputService = new OutputService();
+            var serviceCollection = new ServiceCollection();
 
-            var robotApp = new RobotApp(inputService, outputService);
+            serviceCollection.AddSingleton<IInputService, InputService>();
+            serviceCollection.AddSingleton<IOutputService, OutputService>();
+            serviceCollection.AddSingleton<IRobotApp, RobotApp>();
+            
+            var provider = serviceCollection.BuildServiceProvider();
 
+            using var scope = provider.CreateScope();
+            
+            var robotApp = scope.ServiceProvider.GetService<IRobotApp>();
             robotApp.Run();
         }
     }
