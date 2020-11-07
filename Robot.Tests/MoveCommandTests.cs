@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Runtime.Serialization;
+using Robot.Simulator.Core;
+using Robot.Simulator.Robot;
 
 namespace Robot.Tests
 {

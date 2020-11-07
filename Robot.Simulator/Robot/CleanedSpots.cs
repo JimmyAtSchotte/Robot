@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Robot.Tests
+namespace Robot.Simulator.Robot
 {
     public class CleanedSpots
     {

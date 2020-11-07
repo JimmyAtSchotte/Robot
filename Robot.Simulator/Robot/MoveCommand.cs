@@ -1,6 +1,7 @@
 ﻿using System;
+using Robot.Simulator.Core;
 
-namespace Robot.Tests
+namespace Robot.Simulator.Robot
 {
 
     public class MoveCommand : IMoveCommand

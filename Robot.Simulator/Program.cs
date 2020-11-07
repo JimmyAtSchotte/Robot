@@ -1,5 +1,6 @@
-﻿using Robot.Tests;
-using System;
+﻿using System;
+using Robot.Simulator.IO.Console;
+using Robot.Simulator.Robot;
 
 namespace Robot.Simulator
 {

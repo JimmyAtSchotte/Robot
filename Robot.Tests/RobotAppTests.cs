@@ -2,6 +2,8 @@
 using ArrangeDependencies.Autofac.Extensions;
 using Moq;
 using NUnit.Framework;
+using Robot.Simulator.Core;
+using Robot.Simulator.Robot;
 
 namespace Robot.Tests
 {

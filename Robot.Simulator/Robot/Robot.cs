@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Robot.Simulator.Core;
 
-namespace Robot.Tests
+namespace Robot.Simulator.Robot
 {
     public class Robot
     {

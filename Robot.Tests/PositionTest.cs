@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Robot.Simulator.Robot;
 
 namespace Robot.Tests
 {

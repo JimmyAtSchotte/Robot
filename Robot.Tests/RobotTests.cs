@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Robot.Simulator.Robot;
 
 namespace Robot.Tests
 {
@@ -10,7 +11,7 @@ namespace Robot.Tests
         [TestCase(100)]
         public void MoveRobotNorthNStep(int steps)
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             var position = robot.Move(MoveCommand.Parse($"N {steps}"));
 
             Assert.AreEqual(steps, position.Y);
@@ -21,7 +22,7 @@ namespace Robot.Tests
         [TestCase(100)]
         public void MoveRobotSouthNStep(int steps)
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             var position = robot.Move(MoveCommand.Parse($"S {steps}"));
 
             Assert.AreEqual(steps * -1, position.Y);
@@ -32,7 +33,7 @@ namespace Robot.Tests
         [TestCase(100)]
         public void MoveRobotWestNStep(int steps)
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             var position = robot.Move(MoveCommand.Parse($"W {steps}"));
 
             Assert.AreEqual(steps * -1, position.X);
@@ -43,7 +44,7 @@ namespace Robot.Tests
         [TestCase(100)]
         public void MoveRobotEastNStep(int steps)
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             var position = robot.Move(MoveCommand.Parse($"E {steps}"));
 
             Assert.AreEqual(steps, position.X);
@@ -52,7 +53,7 @@ namespace Robot.Tests
         [Test]
         public void ShouldMoveRobotInMultipleDirections()
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             robot.Move(MoveCommand.Parse("N 1"));
             robot.Move(MoveCommand.Parse("E 3"));
             robot.Move(MoveCommand.Parse("S 4"));
@@ -65,7 +66,7 @@ namespace Robot.Tests
         [Test]
         public void ShouldHaveCleanedASpotWithoutAnyMovement()
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
 
             Assert.AreEqual(1, robot.CalculateCleanedSpots());
         }
@@ -76,7 +77,7 @@ namespace Robot.Tests
         [TestCase("W 5")]
         public void ShouldHaveCleanedSpotsInOneDirection(string movement)
         {
-            var robot = new Robot();
+            var robot = new Simulator.Robot.Robot();
             robot.Move(MoveCommand.Parse(movement));
 
             Assert.AreEqual(6, robot.CalculateCleanedSpots());

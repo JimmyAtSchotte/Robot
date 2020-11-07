@@ -1,4 +1,4 @@
-﻿namespace Robot.Tests
+﻿namespace Robot.Simulator.Core
 {
     public interface IInputService
     {
