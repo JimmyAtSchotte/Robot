@@ -15,6 +15,7 @@ namespace Robot.Simulator
             serviceCollection.AddSingleton<IInputService, InputService>();
             serviceCollection.AddSingleton<IOutputService, OutputService>();
             serviceCollection.AddSingleton<IRobotApp, RobotApp>();
+            serviceCollection.AddSingleton<ICleanedSpots, CleanedSpots>();
             
             var provider = serviceCollection.BuildServiceProvider();
 

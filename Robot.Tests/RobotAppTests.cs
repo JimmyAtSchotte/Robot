@@ -17,6 +17,7 @@ namespace Robot.Tests
 
             var arrange = Arrange.Dependencies<IRobotApp, RobotApp>(dependencies =>
             {
+                dependencies.UseImplementation<ICleanedSpots, CleanedSpots>();
                 dependencies.UseMock<IInputService>(mock => mock.SetupSequence(x => x.ReadNextInput())
                                                             .Returns("2")
                                                             .Returns("10 22")

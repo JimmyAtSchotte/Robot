@@ -7,20 +7,20 @@ namespace Robot.Simulator.Robot
     public class Robot
     {
         private readonly List<Position> _positions;
+        private readonly ICleanedSpots _cleanedSpots;
         
-
-        public Robot(int x = 0, int y = 0)
+        public Robot(ICleanedSpots cleanedSpots, Position startPosition)
         {
+            _cleanedSpots = cleanedSpots;
             _positions = new List<Position>()
             {
-                new Position(x, y)
+                startPosition
             };
         }
 
         public int CalculateCleanedSpots()
         {
-            var cleanedSpots = new CleanedSpots();  
-            return cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
+            return _cleanedSpots.CalculateCleanedSpots(_positions.ToArray());
         }
 
         public Position Move(IMoveCommand moveCommand)

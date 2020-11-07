@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Robot.Simulator.Core;
 
 namespace Robot.Simulator.Robot
 {
-    public class CleanedSpots
+    public class CleanedSpots : ICleanedSpots
     {
         private readonly List<CleanedSpot> _cleanedSpots;
 
