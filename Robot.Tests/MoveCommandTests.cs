@@ -8,11 +8,19 @@ namespace Robot.Tests
     public class MoveCommandTests
     {
         [Test]
-        public void ShouldParseNorthMovement()
+        public void ParseNorthMovement()
         {
             var moveCommand = MoveCommand.Parse("N 1");
 
             Assert.AreEqual(Direction.North, moveCommand.Direction);
+        }
+
+        [Test]
+        public void ParseSouthMovement()
+        {
+            var moveCommand = MoveCommand.Parse("S 1");
+
+            Assert.AreEqual(Direction.South, moveCommand.Direction);
         }
     }
 
@@ -38,7 +46,8 @@ namespace Robot.Tests
         {
             var direction = moveCommand[0] switch
             {
-                'N' => Direction.North
+                'N' => Direction.North,
+                'S' => Direction.South
             };
 
             return new MoveCommand(direction);
