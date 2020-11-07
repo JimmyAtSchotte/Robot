@@ -49,5 +49,17 @@ namespace Robot.Tests
 
             Assert.AreEqual(steps, position.X);
         }
+        
+        [Test]
+        public void ShouldMoveBackToStartPosition()
+        {
+            var startPosition = new Position(0, 0);
+            var position = startPosition
+                    .Move(MoveCommand.Parse($"N 10"))
+                    .Move(MoveCommand.Parse($"S 10"));
+
+            Assert.AreEqual(startPosition.X, position.X);
+            Assert.AreEqual(startPosition.Y, position.Y);
+        }
     }
 }

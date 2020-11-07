@@ -88,6 +88,17 @@ namespace Robot.Tests
             robot.Move(MoveCommand.Parse(movement));
 
             Assert.AreEqual(6, robot.CalculateCleanedSpots());
-        }    
+        }   
+        
+       [Test]
+        public void ShouldCountUniqueCleaningSpots()
+        {
+            var startPosition = new Position(0, 0);
+            var robot = new Simulator.Robot.Robot(new CleanedSpots(), startPosition);
+            robot.Move(MoveCommand.Parse("N 10"));
+            robot.Move(MoveCommand.Parse("S 10"));
+
+            Assert.AreEqual(11, robot.CalculateCleanedSpots());
+        }  
     }
 }

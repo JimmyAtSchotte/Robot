@@ -12,7 +12,6 @@ namespace Robot.Tests
             var cleanedSpots = new CleanedSpots();
             var currentPosition = new Position(0, 0);
 
-
             var result = cleanedSpots.CalculateCleanedSpots(new[] { currentPosition });
 
             Assert.AreEqual(1, result);
@@ -26,25 +25,43 @@ namespace Robot.Tests
         public void ComparePositionsToAddCleanedSpots(int x, int y)
         {
             var cleanedSpots = new CleanedSpots();
-            var previusPosition = new Position(0, 0);
+            var previousPosition = new Position(0, 0);
             var currentPosition = new Position(x, y);
 
-            var result  =cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previusPosition });
+            var result  =cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previousPosition });
 
             Assert.AreEqual(3, result);
         }
 
+             
+        
         [Test]
-        public void ShouldNotCountSameSpotTwice()
+        public void ShouldCountUniqueSpotsMovingVertical()
         {
             var cleanedSpots = new CleanedSpots();
-            var previusPosition = new Position(0, 0);
-            var currentPosition = new Position(0, 0);
 
-            var result =  cleanedSpots.CalculateCleanedSpots(new[] { currentPosition, previusPosition });
+            var result =  cleanedSpots.CalculateCleanedSpots(new[] { 
+                new Position(0, 0),
+                new Position(10, 0),
+                new Position(0, 0)
+            });
 
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(11, result);
         }
 
+        
+        [Test]
+        public void ShouldCountUniqueSpotsMovingHorizontal()
+        {
+            var cleanedSpots = new CleanedSpots();
+
+            var result =  cleanedSpots.CalculateCleanedSpots(new[] { 
+                new Position(0, 0),
+                new Position(0, 10),
+                new Position(0, 0)
+            });
+
+            Assert.AreEqual(11, result);
+        }
     }
 }
