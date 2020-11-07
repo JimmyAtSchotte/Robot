@@ -79,11 +79,7 @@ namespace Robot.Tests
             robot.Move(movement);
 
             Assert.AreEqual(6, robot.CalculateCleanedSpots());
-        }
-
-
-
-
-    
+        }    
     }
+
 }
