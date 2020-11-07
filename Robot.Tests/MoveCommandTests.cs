@@ -30,6 +30,27 @@ namespace Robot.Tests
 
             Assert.AreEqual(Direction.West, moveCommand.Direction);
         }
+
+        [Test]
+        public void ParseEastMovement()
+        {
+            var moveCommand = MoveCommand.Parse("E 1");
+
+            Assert.AreEqual(Direction.East, moveCommand.Direction);
+        }
+
+
+
+        [TestCase("N", 1)]
+        [TestCase("S", 2)]
+        [TestCase("W", -3)]
+        [TestCase("E", -4)]
+        public void ParseStepsInANyDirectionMovement(string direction, int steps)
+        {
+            var moveCommand = MoveCommand.Parse($"{direction} {steps}");
+
+            Assert.AreEqual(steps, moveCommand.Steps);
+        }
     }
 
     public enum Direction
@@ -42,11 +63,13 @@ namespace Robot.Tests
 
     public class MoveCommand
     {
-        public Direction Direction { get; set; }
+        public Direction Direction { get; }
+        public int Steps { get; }
 
-        private MoveCommand(Direction direction)
+        private MoveCommand(Direction direction, int steps)
         {
             Direction = direction;
+            Steps = steps;
         }
 
 
@@ -56,10 +79,13 @@ namespace Robot.Tests
             {
                 'N' => Direction.North,
                 'S' => Direction.South,
-                'W' => Direction.West
+                'W' => Direction.West,
+                'E' => Direction.East
             };
+            var steps = Convert.ToInt32(moveCommand.Substring(2));
 
-            return new MoveCommand(direction);
+
+            return new MoveCommand(direction, steps);
         }
     }
 
